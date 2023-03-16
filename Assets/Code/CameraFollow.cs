@@ -26,5 +26,9 @@ namespace RedGooGame
 			transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
 		}
 
+		public void SetTarget(GameObject newTarget)
+		{
+			this.target = newTarget.transform;
+		}
 	}
 }

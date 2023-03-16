@@ -18,6 +18,7 @@ namespace RedGooGame
 		}
 
 		public const string LoadingSceneName = "loader";
+		public static string ScoreKey = "Score";
 
 		private static int Score = 0;
 
@@ -38,6 +39,9 @@ namespace RedGooGame
 		private void Start()
 		{
 			DontDestroyOnLoad(gameObject);
+
+			// Restore score
+			Score = PlayerPrefs.GetInt(ScoreKey, 0);
 		}
 
 		private void OnEnable()
@@ -130,11 +134,20 @@ namespace RedGooGame
 		public static void AddScore(int score)
 		{
 			Score += score;
+
+			// Save score
+			PlayerPrefs.SetInt(ScoreKey, Score);
 		}
 
 		public static int GetScore()
 		{
 			return Score;
+		}
+
+		public static void ResetScore()
+		{
+			Score = 0;
+			PlayerPrefs.DeleteKey(ScoreKey);
 		}
 	}
 }

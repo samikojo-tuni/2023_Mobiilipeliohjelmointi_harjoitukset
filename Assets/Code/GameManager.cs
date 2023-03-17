@@ -19,6 +19,7 @@ namespace RedGooGame
 
 		public const string LoadingSceneName = "loader";
 
+		// Staattisten muuttujien arvo säilyy scenelatausten välillä
 		private static int Score = 0;
 
 		// The current state of the level loader
@@ -130,6 +131,7 @@ namespace RedGooGame
 		public static void AddScore(int score)
 		{
 			Score += score;
+			Debug.Log("Pisteet: " + Score);
 		}
 
 		public static int GetScore()

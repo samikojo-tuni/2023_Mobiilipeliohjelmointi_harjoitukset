@@ -18,6 +18,7 @@ namespace RedGooGame
 		}
 
 		public const string LoadingSceneName = "loader";
+		public static string ScoreKey = "Score";
 
 		// Staattisten muuttujien arvo säilyy scenelatausten välillä
 		private static int Score = 0;
@@ -39,6 +40,9 @@ namespace RedGooGame
 		private void Start()
 		{
 			DontDestroyOnLoad(gameObject);
+
+			// Restore score
+			Score = PlayerPrefs.GetInt(ScoreKey, defaultValue: 0);
 		}
 
 		private void OnEnable()
@@ -131,12 +135,21 @@ namespace RedGooGame
 		public static void AddScore(int score)
 		{
 			Score += score;
+
+			// Save score
+			PlayerPrefs.SetInt(ScoreKey, Score);
 			Debug.Log("Pisteet: " + Score);
 		}
 
 		public static int GetScore()
 		{
 			return Score;
+		}
+
+		public static void ResetScore()
+		{
+			Score = 0;
+			PlayerPrefs.DeleteKey(ScoreKey);
 		}
 	}
 }

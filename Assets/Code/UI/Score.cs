@@ -18,5 +18,10 @@ namespace RedGooGame.UI
       {
          scoreText.text = $"Score: {GameManager.GetScore()}";
       }
-   }
+
+		public void Reset()
+		{
+			GameManager.ResetScore();
+		}
+	}
 }

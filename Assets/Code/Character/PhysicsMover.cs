@@ -12,6 +12,8 @@ namespace RedGooGame
 		[SerializeField]
 		private float speed = 1;
 
+		private float speedModifier = 1;
+
 		[SerializeField]
 		private float jumpForce = 1;
 
@@ -23,6 +25,7 @@ namespace RedGooGame
 		private float jumpRate = 0.5f;
 		private float jumpTimer = 0;
 		private bool isGrounded = false;
+		private float modifierTimer = 0;
 		#endregion
 
 		#region Unity Methods
@@ -43,6 +46,21 @@ namespace RedGooGame
 			}
 
 			UpdateJumpTimer(Time.deltaTime);
+
+			UpdateModifierTimer();
+		}
+
+		private void UpdateModifierTimer()
+		{
+			if (modifierTimer > 0)
+			{
+				modifierTimer -= Time.deltaTime;
+
+				if (modifierTimer <= 0)
+				{
+					speedModifier = 1;
+				}
+			}
 		}
 
 		private void FixedUpdate()
@@ -99,9 +117,15 @@ namespace RedGooGame
 		private void Move(Vector2 direction)
 		{
 			Vector2 velocity = this.rb2D.velocity;
-			velocity.x = this.direction.x * this.speed;
+			velocity.x = this.direction.x * this.speed * this.speedModifier;
 			this.rb2D.velocity = velocity;
 		}
 		#endregion
+
+		public void ApplySpeedModifier(float modifier, float time)
+		{
+			this.speedModifier = modifier;
+			this.modifierTimer = time;
+		}
 	}
 }

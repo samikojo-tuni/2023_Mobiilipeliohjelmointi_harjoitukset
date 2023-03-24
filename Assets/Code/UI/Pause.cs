@@ -19,6 +19,16 @@ namespace RedGooGame.UI
 			isPaused = !isPaused;
 
 			Time.timeScale = isPaused ? 0 : 1;
+			// Sama asia kuin alla oleva
+			//if (isPaused == true)
+			//{
+			//	Time.timeScale = 0;
+			//}
+			//else
+			//{
+			//	Time.timeScale = 1;
+			//}
+
 			gameObject.SetActive(isPaused);
 		}
 	}

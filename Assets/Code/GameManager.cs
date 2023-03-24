@@ -42,7 +42,7 @@ namespace RedGooGame
 			DontDestroyOnLoad(gameObject);
 
 			// Restore score
-			Score = PlayerPrefs.GetInt(ScoreKey, 0);
+			Score = PlayerPrefs.GetInt(ScoreKey, defaultValue: 0);
 		}
 
 		private void OnEnable()
